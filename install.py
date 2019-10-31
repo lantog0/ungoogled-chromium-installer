@@ -51,7 +51,9 @@ if __name__ == '__main__':
 
     if current_version != installed_version:
         packages = fetch_packages(current_version)
-
+    else:
+        print('Ungoogled chromium is already updated')
+        exit(0)
 
     cwd = os.path.dirname(os.path.realpath(__file__))
     download_dir = cwd + '/binaries/'
