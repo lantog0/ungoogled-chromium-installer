@@ -16,7 +16,10 @@ def download_package(package_url):
 
     print('[-] Downloading {}...'.format(package_name))
 
-    package_bin = urllib.request.urlopen(package_url).read()
+    try:
+        package_bin = urllib.request.urlopen(package_url).read()
+    except AttributeError:
+        print('[!] Error downloading {}'.format(package_name))
 
     with open(download_dir + package_name, 'wb') as f:
         f.write(package_bin)
@@ -46,7 +49,7 @@ if __name__ == '__main__':
         print('Error matching version')
         exit(1)
 
-    if current_version == installed_version:
+    if current_version != installed_version:
         packages = fetch_packages(current_version)
 
 
