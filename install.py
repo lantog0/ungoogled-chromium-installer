@@ -49,15 +49,15 @@ if __name__ == '__main__':
         print('Error matching version')
         exit(1)
 
-    if current_version != installed_version:
-        packages = fetch_packages(current_version)
-    else:
+    if current_version == installed_version:
         print('Ungoogled chromium is already updated')
         exit(0)
 
     cwd = os.path.dirname(os.path.realpath(__file__))
     download_dir = cwd + '/binaries/'
     create_download_dir()
+
+    packages = fetch_packages(current_version)
 
     threads = []
 
